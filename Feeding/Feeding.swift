@@ -15,7 +15,6 @@ enum NetworkError: Error {
 
 public class Feeding {
     private var url: URL
-    private var cancellables = Set<AnyCancellable>()
 
     init(url: URL) {
         self.url = url
@@ -31,26 +30,24 @@ public class Feeding {
     func parse() -> AnyPublisher<Feed, Error> {
         let parser = Parser()
         let publish = parser.publish()
-        print(self.url)
-        _ = URLSession.shared.dataTaskPublisher(for: self.url)
-            .print("network")
-            .tryMap({ data, response in
-                guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode
-                    else {
-                        throw NetworkError.unknown
-                }
-                return data
-            })
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }, receiveValue: { data in
+        let task = URLSession.shared.dataTask(with: self.url) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                print("no data")
+                return
+            }
+
+            if response.statusCode == 200 {
                 parser.parse(data)
-            }).store(in: &cancellables)
+            } else {
+                print(response.statusCode)
+            }
+        }
+        task.resume()
 
         return publish
     }

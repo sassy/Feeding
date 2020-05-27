@@ -32,7 +32,7 @@ class FeedingTests: XCTestCase {
                 print(error)
             }
         }, receiveValue: { data in
-            print(data)
+            XCTAssertEqual(data.title, "sassy log")
             exp.fulfill()
         }).store(in: &cancellables)
 
