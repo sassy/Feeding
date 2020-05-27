@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Combine
 @testable import Feeding
 
 class FeedingTests: XCTestCase {
@@ -19,16 +20,22 @@ class FeedingTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testFeeding() throws {
+        let exp = expectation(description: "fail")
+        var cancellables = Set<AnyCancellable>()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        Feeding(string: "https://www.blogger.com/feeds/1131534638298698079/posts/default")?.parse().sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                print("finish")
+            case .failure(let error):
+                print(error)
+            }
+        }, receiveValue: { data in
+            print(data)
+            exp.fulfill()
+        }).store(in: &cancellables)
 
+        wait(for: [exp], timeout: 10.0)
+    }
 }

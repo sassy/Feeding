@@ -10,6 +10,13 @@
 		D2BAE8EB247D638200F64F44 /* Feeding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BAE8E1247D638200F64F44 /* Feeding.framework */; };
 		D2BAE8F0247D638200F64F44 /* FeedingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8EF247D638200F64F44 /* FeedingTests.swift */; };
 		D2BAE8F2247D638200F64F44 /* Feeding.h in Headers */ = {isa = PBXBuildFile; fileRef = D2BAE8E4247D638200F64F44 /* Feeding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2BAE8FC247D63BA00F64F44 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8FB247D63BA00F64F44 /* Feeding.swift */; };
+		D2BAE8FE247D6F7600F64F44 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8FD247D6F7600F64F44 /* Parser.swift */; };
+		D2BAE900247D74AC00F64F44 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8FF247D74AC00F64F44 /* ParserTests.swift */; };
+		D2BAE901247D766400F64F44 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8FD247D6F7600F64F44 /* Parser.swift */; };
+		D2BAE902247D766A00F64F44 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE8FB247D63BA00F64F44 /* Feeding.swift */; };
+		D2BAE904247E229B00F64F44 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE903247E229B00F64F44 /* Feed.swift */; };
+		D2BAE9BA247E99B600F64F44 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BAE903247E229B00F64F44 /* Feed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +36,10 @@
 		D2BAE8EA247D638200F64F44 /* FeedingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BAE8EF247D638200F64F44 /* FeedingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingTests.swift; sourceTree = "<group>"; };
 		D2BAE8F1247D638200F64F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2BAE8FB247D63BA00F64F44 /* Feeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
+		D2BAE8FD247D6F7600F64F44 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		D2BAE8FF247D74AC00F64F44 /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
+		D2BAE903247E229B00F64F44 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				D2BAE8E4247D638200F64F44 /* Feeding.h */,
+				D2BAE8FB247D63BA00F64F44 /* Feeding.swift */,
 				D2BAE8E5247D638200F64F44 /* Info.plist */,
+				D2BAE8FD247D6F7600F64F44 /* Parser.swift */,
+				D2BAE903247E229B00F64F44 /* Feed.swift */,
 			);
 			path = Feeding;
 			sourceTree = "<group>";
@@ -82,6 +96,7 @@
 			children = (
 				D2BAE8EF247D638200F64F44 /* FeedingTests.swift */,
 				D2BAE8F1247D638200F64F44 /* Info.plist */,
+				D2BAE8FF247D74AC00F64F44 /* ParserTests.swift */,
 			);
 			path = FeedingTests;
 			sourceTree = "<group>";
@@ -108,6 +123,7 @@
 				D2BAE8DD247D638200F64F44 /* Sources */,
 				D2BAE8DE247D638200F64F44 /* Frameworks */,
 				D2BAE8DF247D638200F64F44 /* Resources */,
+				D2BAE905247E605500F64F44 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -148,6 +164,7 @@
 				TargetAttributes = {
 					D2BAE8E0247D638200F64F44 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 					D2BAE8E9247D638200F64F44 = {
 						CreatedOnToolsVersion = 11.5;
@@ -190,11 +207,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D2BAE905247E605500F64F44 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --format\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D2BAE8DD247D638200F64F44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BAE8FE247D6F7600F64F44 /* Parser.swift in Sources */,
+				D2BAE904247E229B00F64F44 /* Feed.swift in Sources */,
+				D2BAE8FC247D63BA00F64F44 /* Feeding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BAE9BA247E99B600F64F44 /* Feed.swift in Sources */,
+				D2BAE900247D74AC00F64F44 /* ParserTests.swift in Sources */,
 				D2BAE8F0247D638200F64F44 /* FeedingTests.swift in Sources */,
+				D2BAE902247D766A00F64F44 /* Feeding.swift in Sources */,
+				D2BAE901247D766400F64F44 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +297,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -315,6 +361,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -340,6 +387,7 @@
 		D2BAE8F6247D638200F64F44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = X82UK2ZA32;
@@ -356,6 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.sassy.Feeding;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +413,7 @@
 		D2BAE8F7247D638200F64F44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = X82UK2ZA32;
@@ -388,6 +438,7 @@
 		D2BAE8F9247D638200F64F44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X82UK2ZA32;
 				INFOPLIST_FILE = FeedingTests/Info.plist;
@@ -406,6 +457,7 @@
 		D2BAE8FA247D638200F64F44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X82UK2ZA32;
 				INFOPLIST_FILE = FeedingTests/Info.plist;
