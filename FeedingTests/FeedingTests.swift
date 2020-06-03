@@ -24,17 +24,18 @@ class FeedingTests: XCTestCase {
         let exp = expectation(description: "fail")
         var cancellables = Set<AnyCancellable>()
 
-        Feeding(string: "https://www.blogger.com/feeds/1131534638298698079/posts/default")?.parse().sink(receiveCompletion: { completion in
-            switch completion {
-            case .finished:
-                print("finish")
-            case .failure(let error):
-                print(error)
-            }
-        }, receiveValue: { data in
-            XCTAssertEqual(data.title, "sassy log")
-            exp.fulfill()
-        }).store(in: &cancellables)
+        Feeding(string: "https://www.blogger.com/feeds/1131534638298698079/posts/default")?.parse()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("finish")
+                case .failure(let error):
+                    print(error)
+                }
+            }, receiveValue: { data in
+                XCTAssertEqual(data.title, "sassy log")
+                exp.fulfill()
+            }).store(in: &cancellables)
 
         wait(for: [exp], timeout: 10.0)
     }

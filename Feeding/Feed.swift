@@ -8,17 +8,17 @@
 
 import Foundation
 
-public struct Entry {
-    var title: String?
-    var link: String?
-    var summary: String?
-    var updated: Date?
-    var content: String?
+public struct Entry: Hashable {
+    public var title: String? = ""
+    public var link: String? = ""
+    public var summary: String? = ""
+    public var updated: Date? = Date()
+    public var content: String?  = ""
 }
 
-public struct Feed {
-    var title: String?
-    var id: String?
-    var updated: Date?
-    var entry: [Entry] = []
+public struct Feed: Hashable {
+    public var title: String? = ""
+    public var id: String? = ""
+    public var updated: Date? = Date()
+    public var entry: [Entry] = []
 }

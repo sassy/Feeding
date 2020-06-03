@@ -16,18 +16,18 @@ enum NetworkError: Error {
 public class Feeding {
     private var url: URL
 
-    init(url: URL) {
+    public init(url: URL) {
         self.url = url
     }
 
-    convenience init?(string: String) {
+    public convenience init?(string: String) {
         guard let url: URL = URL(string: string) else {
             return nil
         }
         self.init(url: url)
     }
 
-    func parse() -> AnyPublisher<Feed, Error> {
+    public func parse() -> AnyPublisher<Feed, Error> {
         let parser = Parser()
         let publish = parser.publish()
         let task = URLSession.shared.dataTask(with: self.url) { data, response, error in
